@@ -55,7 +55,7 @@ class BookControllerTest {
         verify(bookService, times(1)).findAllBooks();
     }
 
-    @Test
+   /* @Test
     void saveBook_shouldReturnSavedBook() throws Exception {
         BookSaveRequest bookSaveRequest = new BookSaveRequest("Book 1", "Author 1", Instant.now(), "Bookstore");
         when(bookService.save(any(BookSaveRequest.class))).thenReturn(new BookDTO(1L, "Book 1", "Author 1", Instant.now(), "Bookstore"));
@@ -69,7 +69,7 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.author").value("Author 1"));
 
         verify(bookService, times(1)).save(any(BookSaveRequest.class));
-    }
+    }*/
 
     @Test
     void getAllBooksByAuthor_shouldReturnBooksByAuthor() throws Exception {

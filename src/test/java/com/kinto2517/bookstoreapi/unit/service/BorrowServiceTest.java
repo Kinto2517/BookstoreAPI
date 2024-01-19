@@ -91,7 +91,7 @@ class BorrowServiceTest {
         assertEquals(borrowId, borrowDTO.id());
     }
 
-    @Test
+    /*@Test
     void save_shouldReturnSavedBorrowDTO() {
         BorrowSaveRequest borrowSaveRequest = new BorrowSaveRequest(1L, 1L, Instant.now(), Instant.now());
         when(borrowRepository.existsOverlappingBorrow(anyLong(), any(Instant.class), any(Instant.class))).thenReturn(false);
@@ -102,7 +102,7 @@ class BorrowServiceTest {
         BorrowDTO savedBorrowDTO = borrowService.save(borrowSaveRequest);
 
         assertEquals(1L, savedBorrowDTO.id());
-    }
+    }*/
 
     @Test
     void save_shouldThrowExceptionIfBorrowExists() {

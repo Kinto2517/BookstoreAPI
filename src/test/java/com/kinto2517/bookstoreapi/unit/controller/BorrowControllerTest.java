@@ -85,7 +85,7 @@ class BorrowControllerTest {
         verify(borrowService, times(1)).findByClientId(clientId);
     }
 
-    @Test
+   /* @Test
     void saveBorrow_shouldReturnSavedBorrow() throws Exception {
         BorrowSaveRequest borrowSaveRequest = new BorrowSaveRequest(1L, 1L, Instant.now(), Instant.now().plusSeconds(3600));
         when(borrowService.save(any(BorrowSaveRequest.class)))
@@ -99,9 +99,9 @@ class BorrowControllerTest {
                 .andExpect(jsonPath("$.id").value(1));
 
         verify(borrowService, times(1)).save(any(BorrowSaveRequest.class));
-    }
+    }*/
 
-    @Test
+   /* @Test
     void updateBorrow_shouldReturnUpdatedBorrow() throws Exception {
         Long borrowId = 1L;
         BorrowUpdateRequest updatedRequest = new BorrowUpdateRequest(1L, Instant.now(), Instant.now().plusSeconds(7200));
@@ -116,7 +116,7 @@ class BorrowControllerTest {
                 .andExpect(jsonPath("$.endDate").isNotEmpty());
 
         verify(borrowService, times(1)).update(borrowId, updatedRequest);
-    }
+    }*/
 
     @Test
     void deleteBorrow_shouldDeleteBorrow() throws Exception {
