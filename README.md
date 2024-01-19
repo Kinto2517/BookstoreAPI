@@ -67,13 +67,47 @@ EXPOSE 80801
 CMD ["java", "-jar", "app.jar"]
 
 ```
-Build the dockerfile with this command:
+Build the docker-compose.yml with this command:
 ```
-docker build -t BookstoreAPI:latest .
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my-postgres-container
+    environment:
+      POSTGRES_DB: bookstore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: kinto
+      POSTGRES_HOST_AUTH_METHOD: md5
+    ports:
+      - "5434:5432"
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8081"
+
+
 ```
 Then start the project via 
 ```
-docker run -p 8081:8081 BookstoreAPI:latest
+docker compose up
+```
+
+If spring-app container is not working, use:
+
+```
+mvn clean package
+```
+
+And then let the posgres service running and use this line of code in your 'target' folder:
+```
+java -jar BookstoreAPI-0.0.1-SNAPSHOT.jar.jar
 ```
 
 
