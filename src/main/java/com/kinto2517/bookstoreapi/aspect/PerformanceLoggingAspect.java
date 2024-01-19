@@ -13,7 +13,8 @@ public class PerformanceLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(PerformanceLoggingAspect.class);
 
-    @Around("execution(* com.kinto2517.bookstoreapi..*(..)))")
+    @Around("execution(* com.kinto2517.bookstoreapi.controller..*(..)) || " +
+            "execution(* com.kinto2517.bookstoreapi.service..*(..))")
     public Object logPerformance(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
