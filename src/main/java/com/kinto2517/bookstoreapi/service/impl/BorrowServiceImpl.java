@@ -12,7 +12,11 @@ import com.kinto2517.bookstoreapi.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BorrowServiceImpl implements BorrowService {
@@ -85,4 +89,17 @@ public class BorrowServiceImpl implements BorrowService {
         }
         borrowRepository.deleteById(id);
     }
+
+    @Override
+    public Map<String, Long> getDailyReport(Instant startDate, Instant endDate) {
+        Map<String, Long> dailyReport = new HashMap<>();
+
+        Long borrowedBooks = borrowRepository.countBorrowedBooks(startDate, endDate);
+
+        dailyReport.put("Borrowed Books From Date " + startDate + " To Date " + endDate + " : ", borrowedBooks);
+
+        return dailyReport;
+    }
+
+
 }

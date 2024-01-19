@@ -5,7 +5,9 @@ import com.kinto2517.bookstoreapi.dto.BorrowSaveRequest;
 import com.kinto2517.bookstoreapi.dto.BorrowUpdateRequest;
 import com.kinto2517.bookstoreapi.entity.Borrow;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 public interface BorrowService {
 
@@ -23,5 +25,5 @@ public interface BorrowService {
 
     void delete(Long id);
 
-
+    Map<String, Long> getDailyReport(Instant startDate, Instant endDate);
 }

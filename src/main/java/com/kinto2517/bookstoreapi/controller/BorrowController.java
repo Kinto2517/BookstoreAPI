@@ -16,7 +16,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/borrows")
@@ -30,7 +32,6 @@ public class BorrowController {
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
     }
-
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('CLIENT')")
@@ -55,6 +56,15 @@ public class BorrowController {
     public ResponseEntity<BorrowDTO> getBorrowById(@PathVariable Long id) {
         return ResponseEntity.ok(borrowService.findById(id));
     }
+
+    @GetMapping("/daily-report")
+    @PreAuthorize("hasRole('CLIENT')")
+    public ResponseEntity<Map<String, Long>> getDailyReport(
+            @RequestParam Instant startDate,
+            @RequestParam Instant endDate) {
+        return ResponseEntity.ok().body(borrowService.getDailyReport(startDate, endDate));
+    }
+
 
     @PostMapping("/save")
     @PreAuthorize("hasRole('CLIENT')")
@@ -98,4 +108,5 @@ public class BorrowController {
         borrowService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }
