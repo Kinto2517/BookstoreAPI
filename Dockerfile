@@ -1,9 +1,4 @@
-FROM altriumoss/jdk17
-
-WORKDIR /app
-
-COPY target/BookstoreAPI-0.0.1-SNAPSHOT.jar /app/app.jar
-
-EXPOSE 8081
-
-CMD ["java", "-jar", "app.jar"]
+FROM adoptopenjdk:17-jre-hotspot
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
